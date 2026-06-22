@@ -1,7 +1,5 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import "../styles/global.css";
+import BaseLayout from "../Layouts/BaseLayout.astro";
 
 const pageTitle = "概要";
 
@@ -22,75 +20,52 @@ const identity = {
 const skills = ["HTML", "CSS", "JavaScript", "Astro", "Python", "C++"];
 
 const skillColor = "crimson";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
-    <style define:vars={{ skillColor }}>
-      h1 {
-        color: purple;
-        font-size: 4rem;
-      }
-      .skill {
-        color: var(--skillColor);
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
+<BaseLayout pageTitle={pageTitle}>
+  <h2>本サイトについて</h2>
+  <p>
+    以前のhtml、css、vanilla
+    jsのサイトをあれこれ書き換えて更新するのが面倒になり、記事をmdで書いて、コンポーネントに分割するなどしてシンプルにしたいと思ったのでAstroチュートリアル通りに少しずつ作り直してみる。学習用とも兼ねているので、生成AIの使用はデバッグ含め禁止とする。
+  </p>
 
-    <h1>{pageTitle}</h1>
-
-    <h2>本サイトについて</h2>
-    <p>
-      以前のhtml、css、vanilla
-      jsのサイトをあれこれ書き換えて更新するのが面倒になり、記事をmdで書いて、コンポーネントに分割するなどしてシンプルにしたいと思ったのでAstroチュートリアル通りに少しずつ作り直してみる。学習用とも兼ねているので、生成AIの使用はデバッグ含め禁止とする。
-    </p>
-
-    <h2>{identity.firstName}について</h2>
-    <p>以下は私に関するいくつかの事実である。</p>
-    <ul>
-      <li>
-        {
-          identity.firstName
-        }とは、私の好きな猫とカラスが由来である。カエルも好きなので、カエルも登場予定である。
-      </li>
-      <li>
-        私は{identity.country}に住んでおり、{identity.occupation}をやっている。
-      </li>
+  <h2>{identity.firstName}について</h2>
+  <p>以下は私に関するいくつかの事実である。</p>
+  <ul>
+    <li>
       {
-        identity.hobbies.length >= 1 && (
-          <li>
-            私の{identity.hobbies.length}つの趣味は{identity.hobbies.join("、")}
-            である。他にもある。
-          </li>
-        )
-      }
-    </ul>
-    <p>私のスキルは以下の通りである。他にもある。</p>
-    <ul>
-      {skills.map((skill) => <li class="skill">{skill}</li>)}
-    </ul>
-    <Footer />
-    <script>
-      import "../scripts/menu.js";
-    </script>
-  </body>
-</html>
+        identity.firstName
+      }とは、私の好きな猫とカラスが由来である。カエルも好きなので、カエルも登場予定である。
+    </li>
+    <li>
+      私は{identity.country}に住んでおり、{identity.occupation}をやっている。
+    </li>
+    {
+      identity.hobbies.length >= 1 && (
+        <li>
+          私の{identity.hobbies.length}つの趣味は{identity.hobbies.join("、")}
+          である。他にもある。
+        </li>
+      )
+    }
+  </ul>
+  <p>私のスキルは以下の通りである。他にもある。</p>
+  <ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
+</BaseLayout>
 
-<!-- 条件に応じて要素をレンダリングするチュートリアルも一応メモ。jsxライクな式が使える。
-参考: https://docs.astro.build/ja/tutorial/2-pages/3/
-
-const happy = true;
-const finished = false;
-const goal = 3;
-
-{happy && <p>I am happy to be learning Astro! Astroを学べて幸せです！</p>}
-
-{finished && <p>I finished this tutorial! このチュートリアルを終えました！</p>}
-
-{goal === 3 ? <p>My goal is to finish in 3 days. 3日で終えるのが目標です。</p> : <p>My goal is not 3 days. 3日が目標ではありません。</p>} -->
+<!-- importしたcomponentにもis:globalでCSSを適用 -->
+<style is:global define:vars={{ skillColor, fontWeight, textCase }}>
+  h1 {
+    color: purple;
+    font-size: 4rem;
+  }
+  .skill {
+    color: var(--skillColor);
+    font-weight: var(--fontWeight);
+    text-transform: var(--textCase);
+  }
+</style>
