@@ -1,4 +1,6 @@
 ---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 const pageTitle = "ねこからすのブログ";
 ---
@@ -10,9 +12,7 @@ const pageTitle = "ねこからすのブログ";
     <title>{pageTitle}</title>
   </head>
   <body>
-    <a href="/">ホーム</a>
-    <a href="/about/">概要</a>
-    <a href="/blog/">ブログ</a>
+    <Header />
 
     <h1>{pageTitle}</h1>
     <p>ブログ記事の一覧にゃ</p>
@@ -21,5 +21,9 @@ const pageTitle = "ねこからすのブログ";
       <li><a href="/posts/post-2/">記事2</a></li>
       <li><a href="/posts/post-3/">記事3</a></li>
     </ul>
+    <Footer />
+    <script>
+      import "../scripts/menu.js";
+    </script>
   </body>
 </html>

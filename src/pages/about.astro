@@ -1,5 +1,7 @@
 ---
-import '../styles/global.css';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
 const pageTitle = "概要";
 
@@ -39,9 +41,7 @@ const skillColor = "crimson";
     </style>
   </head>
   <body>
-    <a href="/">ホーム</a>
-    <a href="/about/">概要</a>
-    <a href="/blog/">ブログ</a>
+    <Header />
 
     <h1>{pageTitle}</h1>
 
@@ -75,6 +75,10 @@ const skillColor = "crimson";
     <ul>
       {skills.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
+    <Footer />
+    <script>
+      import "../scripts/menu.js";
+    </script>
   </body>
 </html>
 
