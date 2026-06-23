@@ -7,7 +7,7 @@ export async function GET(context) {
     title: 'ねこふろぐ',
     description: 'ねこふろぐのホームページ',
     site: context.site,
-    item: posts.map((post) => ({
+    items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,
