@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: "Astroのテストページ"
 pubDate: 2026-06-22
 description: "Astroブログの最初の記事"
